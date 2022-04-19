@@ -1,0 +1,25 @@
+# Coded by sarah,#1329 | https://github.com/deqressed/
+# Note: you must have Skript Latest version and Disky v3.
+# This is NOT for Vixio, grow up and use disky bcuz vixio died a year ago.
+
+options:
+    token: TOKEN # < Token of the bot.
+    botname: MyServerBot # < The name of your bot.
+
+every 5 seconds:
+	set presence of bot "{@MyServerBot}" to watching "%amount of online players% Player(s)"
+
+on load:
+    wait 5 ticks
+    shutdown bot named "{@MyServerBot}"
+    wait a tick
+    login to "{@token}" with the name "{@MyServerBot}"
+    set presence of bot "{@MyServerBot}" to watching "%amount of online players% Player(s)"
+
+command forcelogin:
+	permission: op
+	trigger:
+		shutdown bot named "{@MyServerBot}"
+		wait 5 ticks
+		login to "{@token}" with the name "{@MyServerBot}"
+		set presence of bot "{@MyServerBot}" to watching "%amount of online players% Player(s)"
