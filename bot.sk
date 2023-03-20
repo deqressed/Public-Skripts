@@ -1,25 +1,19 @@
-# Coded by sarah,#1329 | https://github.com/deqressed/
+# Coded by careless,#0001 (https://discord.com/users/965722162566692914) | https://github.com/deqressed/
 # Note: you must have Skript Latest version and Disky v3.
-# This is NOT for Vixio, grow up and use disky bcuz vixio died a year ago.
 
 options:
     token: TOKEN # < Token of the bot.
     botname: MyServerBot # < The name of your bot.
 
-every 5 seconds:
-	set presence of bot "{@MyServerBot}" to watching "%amount of online players% Player(s)"
+on unload:
+    shutdown bot named "Flexed"
+    send "%nl%[DISKY] {@botname} bot has been shutdown and no longer connected to discord!%nl%" to console
 
-on load:
-    wait 5 ticks
-    shutdown bot named "{@MyServerBot}"
-    wait a tick
-    login to "{@token}" with the name "{@MyServerBot}"
-    set presence of bot "{@MyServerBot}" to watching "%amount of online players% Player(s)"
-
-command forcelogin:
-	permission: op
-	trigger:
-		shutdown bot named "{@MyServerBot}"
-		wait 5 ticks
-		login to "{@token}" with the name "{@MyServerBot}"
-		set presence of bot "{@MyServerBot}" to watching "%amount of online players% Player(s)"
+define new bot named "{@botname}":
+    token: {@token}
+    intents: default intents
+    policy: all
+    auto reconnect: true
+    compression: none
+    on ready:
+        send "[DISKY] {@botname} bot has been connected to discord successfully!" to console

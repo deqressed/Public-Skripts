@@ -1,128 +1,119 @@
+# Coded by careless,#0001 (https://discord.com/users/965722162566692914) | https://github.com/deqressed/
 options:
-    prefix: &cMyServer &8» # Your server prefix
-    # Symbols: │ → » «
-    nopermission: &cMyServer &8» {@secondary}Insufficient permissions! # No permission for commands.
-    
-    permission: MyServer #For your permission inputs for an example: /lp user angelsarah permission set [MyServer].gamemode.creative true
-                         # That [MyServer] will replace it in. like [hypixel.gamemode.creative] 
-                         # the beginning of your each permission.
-    primary: &c
-    secondary &7
+	prefix: &cMyServer &8» # Your server prefix
+	# Symbols: │ → » «
+	nopermission: &cMyServer &8» {@secondary}Insufficient permissions! # No permission for commands.
+	
+	permission: MyServer #For your permission inputs for an example: /lp user deqressing permission set [MyServer].gamemode.creative true
+						 # That [MyServer] will replace it in. like [hypixel.gamemode.creative] 
+						 # the beginning of your each permission.
+	primary: &7
+	secondary &c
 
-    Maker: Angelsarah (sarah,##0001)
-    version: 1.0.1
+	Maker: deqressing
+	version: 1.0.2
 
 function logs(p: player, action: text):
-    set {_player::*} to all players where [input has permission "staff"]
-    remove {_p} from {_player::*}
-    send colored "{@primary}&o[&4%player%{@primary}: %{_action}%{@primary}&o]" to all players where [{_player::*} contains input]
+	set {_player::*} to all players where [input has permission "staff"]
+	remove {_p} from {_player::*}
+	send colored "{@primary}&o[&4%player%{@primary}: %{_action}%{@primary}&o]" to all players where [{_player::*} contains input]
 
 
 command /gmc [<player>]:
-    usage: {@prefix} {@primary}Invalid usage! {@primary}/gmc [<player>]
-    trigger:
-        if player has permission "{@permission}.gamemode.creative":
-            if arg-1 is set:
-                if player has permission "{@permission}.gamemode.creative.others":
-                    set arg-1's gamemode to creative
-                    send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
-                    send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}creative{@primary}." to player
-                    Logs(player, "has updated %arg-1%{@primary}'s gamemode to creative.")
-                else:
-                    send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
-            else:
-                set player's gamemode to creative
-                send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}creative{@primary}." to player
-                Logs(player, "has updated their gamemode to creative.")
-        else:
-            send "{@nopermission}"
+	permission: {@permission}.gamemode.creative
+	permission message: {@nopermission}
+	usage: {@prefix} {@primary}Invalid usage! {@secondary}/gmc [<player>]
+	trigger:
+		if arg-1 is set:
+			if player has permission "{@permission}.gamemode.creative.others":
+				set arg-1's gamemode to creative
+				send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
+				send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}creative{@primary}." to player
+				Logs(player, "has updated %arg-1%{@primary}'s gamemode to creative.")
+			else:
+				send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
+		else:
+			set player's gamemode to creative
+			send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}creative{@primary}." to player
+			Logs(player, "has updated their gamemode to creative.")
 
 command /gms [<player>]:
-    usage: {@prefix} {@primary}Invalid usage! {@primary}/gms [<player>]
-    trigger:
-        if player has permission "{@permission}.gamemode.survival":
-            if arg-1 is set:
-                if player has permission "{@permission}.gamemode.survival.others":
-                    set arg-1's gamemode to survival
-                    send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
-                    send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}survival{@primary}." to player
-                    Logs(player, "has updated %arg-1%{@primary}'s gamemode to survival.")
-                else:
-                    send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
-            else:
-                set player's gamemode to survival
-                send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}survival{@primary}." to player
-                Logs(player, "has updated their gamemode to survival.")
-        else:
-            send "{@nopermission}"
+	permission: {@permission}.gamemode.survival
+	permission message: {@nopermission}
+	usage: {@prefix} {@primary}Invalid usage! {@secondary}/gms [<player>]
+	trigger:
+		if arg-1 is set:
+			if player has permission "{@permission}.gamemode.survival.others":
+				set arg-1's gamemode to survival
+				send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
+				send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}survival{@primary}." to player
+				Logs(player, "has updated %arg-1%{@primary}'s gamemode to survival.")
+			else:
+				send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
+		else:
+			set player's gamemode to survival
+			send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}survival{@primary}." to player
+			Logs(player, "has updated their gamemode to survival.")
 command /gmsp [<player>]:
-    usage: {@prefix} {@primary}Invalid usage! {@primary}/gmsp [<player>]
-    trigger:
-        if player has permission "{@permission}.gamemode.spectator":
-            if arg-1 is set:
-                if player has permission "{@permission}.gamemode.spectator.others":
-                    set arg-1's gamemode to spectator
-                    send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
-                    send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}spectator{@primary}." to player
-                    Logs(player, "has updated %arg-1%{@primary}'s gamemode to spectator.")
-                else:
-                    send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
-            else:
-                set player's gamemode to spectator
-                send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}spectator{@primary}." to player
-                Logs(player, "has updated their gamemode to spectator.")
-        else:
-            send "{@nopermission}"
+	permission: {@permission}.gamemode.spectator
+	permission message: {@nopermission}
+	usage: {@prefix} {@primary}Invalid usage! {@secondary}/gmsp [<player>]
+	trigger:
+		if arg-1 is set:
+			if player has permission "{@permission}.gamemode.spectator.others":
+				set arg-1's gamemode to spectator
+				send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
+				send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}spectator{@primary}." to player
+				Logs(player, "has updated %arg-1%{@primary}'s gamemode to spectator.")
+			else:
+				send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
+		else:
+			set player's gamemode to spectator
+			send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}spectator{@primary}." to player
+			Logs(player, "has updated their gamemode to spectator.")
 command /gma [<player>]:
-    usage: {@prefix} {@primary}Invalid usage! {@primary}/gma [<player>]
-    trigger:
-        if player has permission "{@permission}.gamemode.adventure":
-            if arg-1 is set:
-                if player has permission "{@permission}.gamemode.adventure.others":
-                    set arg-1's gamemode to adventure
-                    send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
-                    send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}adventure{@primary}." to player
-                    Logs(player, "has updated %arg-1%{@primary}'s gamemode to adventure.")
-                else:
-                    send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
-            else:
-                set player's gamemode to adventure
-                send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}adventure{@primary}." to player
-                Logs(player, "has updated their gamemode to adventure.")
-        else:
-            send "{@nopermission}"
-
+	permission: {@permission}.gamemode.adventure
+	permission message: {@nopermission}
+	usage: {@prefix} {@primary}Invalid usage! {@secondary}/gma [<player>]
+	trigger:
+		if arg-1 is set:
+			if player has permission "{@permission}.gamemode.adventure.others":
+				set arg-1's gamemode to adventure
+				send "{@prefix} {@primary}Your gamemode has been updated!" to arg-1
+				send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}gamemode to {@secondary}adventure{@primary}." to player
+				Logs(player, "has updated %arg-1%{@primary}'s gamemode to adventure.")
+			else:
+				send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
+		else:
+			set player's gamemode to adventure
+			send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}gamemode to {@secondary}adventure{@primary}." to player
+			Logs(player, "has updated their gamemode to adventure.")
 
 command /fly [<player>]:
-    usage: {@prefix} {@primary}Invalid usage! {@secondary}/fly [<player>]
-    trigger:
-        if player has permission "{@permission}.fly":
-            if arg-1 is set:
-                if player has permission "{@permission}.fly.others":
-                    if arg-1's flight mode is false:
-                        set arg-1's flight mode to true
-                        send "{@prefix} {@primary}Your flight mode has been updated!" to arg-1
-                        send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}flight mode to {@secondary}true" to player
-                        Logs(player, "has updated %arg-1%{@primary}'s flight mode to true")
-                    else:
-                        set arg-1's flight mode to false
-                        send "{@prefix} {@primary}Your flight mode has been updated!" to arg-1
-                        send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}flight mode to {@secondary}false" to player
-                        Logs(player, "has updated %arg-1%{@primary}'s flight mode to false")
-                else:
-                    send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
-            else:
-                if player's flight mode is false:
-                    set player's flight mode to true
-                    send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}flight mode to {@secondary}true" to player
-                    Logs(player, "has updated their flight mode to true")
-                else:
-                    set player's flight mode to false
-                    send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}flight mode to {@secondary}false" to player
-                    Logs(player, "has updated their flight mode to false")
-        else:
-            send "{@nopermission}"
-
-
-
-        
+	permission: {@permission}.fly
+	permission message: {@nopermission}
+	usage: {@prefix} {@primary}Invalid usage! {@secondary}/fly [<player>]
+	trigger:
+		if arg-1 is set:
+			if player has permission "{@permission}.fly.others":
+				if arg-1's flight mode is false:
+					set arg-1's flight mode to true
+					send "{@prefix} {@primary}Your flight mode has been updated!" to arg-1
+					send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}flight mode to {@secondary}true" to player
+					Logs(player, "has updated %arg-1%{@primary}'s flight mode to true")
+				else:
+					set arg-1's flight mode to false
+					send "{@prefix} {@primary}Your flight mode has been updated!" to arg-1
+					send "{@prefix} {@primary}Set {@secondary}%arg-1%'s {@primary}flight mode to {@secondary}false" to player
+					Logs(player, "has updated %arg-1%{@primary}'s flight mode to false")
+			else:
+				send "{@prefix} {@primary}You don't have permission to set other's gamemode" to player
+		else:
+			if player's flight mode is false:
+				set player's flight mode to true
+				send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}flight mode to {@secondary}true" to player
+				Logs(player, "has updated their flight mode to true")
+			else:
+				set player's flight mode to false
+				send "{@prefix} {@primary}Set {@secondary}%player%'s {@primary}flight mode to {@secondary}false" to player
+				Logs(player, "has updated their flight mode to false")
