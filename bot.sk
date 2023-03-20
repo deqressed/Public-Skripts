@@ -1,5 +1,5 @@
 # Coded by careless,#0001 (https://discord.com/users/965722162566692914) | https://github.com/deqressed/
-# Note: you must have Skript Latest version and Disky v3.
+# Note: you must have Skript Latest version and Disky v4.
 
 options:
     token: TOKEN # < Token of the bot.
